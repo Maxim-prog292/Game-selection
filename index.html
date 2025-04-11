@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Глассморфизм Блоки</title>
+    <style>
+      @font-face {
+        font-family: TT;
+        src: url(/TT-Paplane-Regular.ttf);
+      }
+      * {
+        font-family: TT;
+        letter-spacing: 1px;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: url(/Frame220.png);
+        color: white;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      h1 {
+        font-size: 60px;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+        margin-top: 200px;
+      }
+
+      .block {
+        width: 500px;
+        height: 500px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 20px #5f5b5b;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+      .meteor {
+        background: url(/ship.png);
+        background-size: 200%;
+        background-position: center;
+      }
+      .tride {
+        background: url(/planets.png);
+        background-size: 100%;
+        background-position: center;
+      }
+      .pravilniy {
+        background: url(/pravilniy.jpg);
+        background-size: 240%;
+        background-position: -10px;
+      }
+      .planet {
+        background: url(/save.png);
+        background-size: 122%;
+        background-position: center;
+      }
+
+      .block:active {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
+      }
+
+      .label {
+        position: absolute;
+        top: -60px;
+        margin-top: 8px;
+        font-size: 22px;
+        text-align: center;
+        color: #f0f0f0;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Поиграем?</h1>
+    <div class="container">
+      <div class="block meteor">
+        <h3 class="label">Пролети через метеоритный дождь</h3>
+      </div>
+
+      <div class="block planet"><h3 class="label">Защити Землю</h3></div>
+
+      <div class="block pravilniy">
+        <h3 class="label">Расставь планеты в правильном порядке</h3>
+      </div>
+
+      <div class="block tride"><h3 class="label">Изучи планеты</h3></div>
+    </div>
+    <script>
+      document.addEventListener("click", (e) => {
+        let target = e.target;
+        console.log(target);
+        if (target.classList.contains("meteor")) {
+          window.location.href =
+            "https://maxim-prog292.github.io/planetariy_game_1/";
+        } else if (target.classList.contains("planet")) {
+          window.location.href =
+            "https://maxim-prog292.github.io/planetariy_game_2/";
+        } else if (target.classList.contains("pravilniy")) {
+          window.location.href =
+            "https://maxim-prog292.github.io/planetariy_game_3/";
+        } else if (target.classList.contains("tride")) {
+          window.location.href =
+            "https://maxim-prog292.github.io/planetarium_3D/";
+        }
+      });
+    </script>
+  </body>
+</html>
