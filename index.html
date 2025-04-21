@@ -2,21 +2,33 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор игры</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <title>Глассморфизм Блоки</title>
     <style>
       @font-face {
         font-family: TT;
-        src: url(TT-Paplane-Regular.ttf);
+        src: url(/TT-Paplane-Regular.ttf);
       }
       * {
         font-family: TT;
         letter-spacing: 1px;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
+
+        touch-action: none;
+        user-select: none;
       }
       body {
         margin: 0;
         padding: 0;
-        background: url(Frame220.png);
+        background: url(/Frame220.png);
         color: white;
         font-family: sans-serif;
         display: flex;
@@ -34,12 +46,12 @@
         flex-direction: row;
         gap: 20px;
         align-items: center;
-        margin-top: 200px;
+        margin-top: 100px;
       }
 
       .block {
-        width: 500px;
-        height: 500px;
+        width: 450px;
+        height: 400px;
         border-radius: 15px;
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10px);
@@ -54,22 +66,22 @@
         cursor: pointer;
       }
       .meteor {
-        background: url(ship.png);
+        background: url(/ship.png);
         background-size: 200%;
         background-position: center;
       }
       .tride {
-        background: url(planets.png);
+        background: url(/planets.png);
         background-size: 100%;
         background-position: center;
       }
       .pravilniy {
-        background: url(pravilniy.jpg);
+        background: url(/pravilniy.jpg);
         background-size: 240%;
         background-position: -10px;
       }
       .planet {
-        background: url(save.png);
+        background: url(/save.png);
         background-size: 122%;
         background-position: center;
       }
@@ -81,7 +93,7 @@
 
       .label {
         position: absolute;
-        top: -60px;
+        top: -80px;
         margin-top: 8px;
         font-size: 22px;
         text-align: center;
@@ -91,7 +103,6 @@
     </style>
   </head>
   <body>
-    <h1>Поиграем?</h1>
     <div class="container">
       <div class="block meteor">
         <h3 class="label">Пролети через метеоритный дождь</h3>
@@ -106,6 +117,31 @@
       <div class="block tride"><h3 class="label">Изучи планеты</h3></div>
     </div>
     <script>
+      window.addEventListener("mousewheel", function (e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+          return false;
+        }
+      });
+      document.addEventListener(
+        "touchstart",
+        (e) => {
+          // Если используется более одного пальца
+          if (e.touches.length > 1) {
+            e.preventDefault(); // Отключаем действие по умолчанию
+          }
+        },
+        { passive: false }
+      ); // { passive: false } важно для предотвращения поведения по умолчанию
+      document.addEventListener(
+        "touchmove",
+        (e) => {
+          if (e.touches.length > 1) {
+            e.preventDefault(); // Отключаем зумирование двумя пальцами
+          }
+        },
+        { passive: false }
+      ); // { passive: false } важно для отмены действия по умолчанию
       document.addEventListener("click", (e) => {
         let target = e.target;
         console.log(target);
